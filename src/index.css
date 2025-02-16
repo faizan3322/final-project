@@ -20,6 +20,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  color: #384b3d
 }
 
 /* Custom transitions */
@@ -38,4 +39,8 @@ html {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #3A7D44; /* Change to any color you want */
 }

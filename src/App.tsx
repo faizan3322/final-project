@@ -6,18 +6,26 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Detection from './pages/Detection';
 import { AuthProvider } from './context/AuthContext';
+import DocDetails from './pages/DocDetails';
+import UploadImg from './pages/UploadImg';
+import Cancertypes from './pages/Cancertypes';
+import Register from './pages/Register';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-[#F8F5E9]">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<Register />} />
             <Route path="/detection" element={<Detection />} />
+            <Route path="/doctors-detail/:id" element={<DocDetails/>}/>
+            <Route path="/upload-image" element={<UploadImg/>}/>
+            <Route path="/cancer-types" element={<Cancertypes/>}/>
+            
           </Routes>
         </div>
       </BrowserRouter>

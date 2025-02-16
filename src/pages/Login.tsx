@@ -1,71 +1,103 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+// Login.tsx (React + TypeScript)
+import React, { useState } from "react";
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { login } = useAuth();
-  const navigate = useNavigate();
+import axios from "axios";
 
-  const handleSubmit = (e: React.FormEvent) => {
+interface FlashMessage {
+  type: "success" | "error";
+  message: string;
+}
+
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [flashMessage, setFlashMessage] = useState<FlashMessage | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    login(email, password);
-    navigate('/');
+    setLoading(true);
+
+    try {
+      const response = await axios.post("http://localhost:5000/login", {
+        email,
+        password,
+      });
+
+      setFlashMessage({ type: "success", message: response.data.message });
+    } catch (error: any) {
+      setFlashMessage({
+        type: "error",
+        message: error.response?.data?.message || "An error occurred.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
+    <div className="login-container">
+      {loading && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </div>
+      )}
+      <div className="card">
+        <h2>Log In to Your Account</h2>
 
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Sign in
+        {flashMessage && (
+          <div className={`flash-message ${flashMessage.type}`}>
+            <i
+              className={`icon fas ${
+                flashMessage.type === "success"
+                  ? "fa-check-circle"
+                  : "fa-exclamation-circle"
+              }`}
+            ></i>
+            {flashMessage.message}
+            <button className="close-btn" onClick={() => setFlashMessage(null)}>
+              &times;
             </button>
           </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <i className="fas fa-envelope icon"></i>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <i className="fas fa-lock icon"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn">
+            Login
+          </button>
         </form>
+
+        <div className="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+        <div className="text-link">
+          <p>
+            Don't have an account? <a href="/register">Register here</a>
+          </p>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
