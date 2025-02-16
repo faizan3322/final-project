@@ -61,7 +61,7 @@ const Register: React.FC = () => {
 
       if (response.ok) {
         setFlashMessage({ type: "success", message: data.message });
-        navigate("/Verify", { state: { email: formData.email } });
+        navigate("/verify", { state: { email: formData.email } });
       } else {
         setFlashMessage({ type: "error", message: data.message });
       }

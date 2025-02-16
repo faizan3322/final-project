@@ -10,6 +10,7 @@ import DocDetails from './pages/DocDetails';
 import UploadImg from './pages/UploadImg';
 import Cancertypes from './pages/Cancertypes';
 import Register from './pages/Register';
+import Verify from './pages/Verify';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/doctors-detail/:id" element={<DocDetails/>}/>
             <Route path="/upload-image" element={<UploadImg/>}/>
             <Route path="/cancer-types" element={<Cancertypes/>}/>
+            <Route path="/verify" element={<Verify/>}/>
             
           </Routes>
         </div>
