@@ -4,8 +4,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import doctors from "./doctors"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import hospitals from "./hospitals";
+
 
 
 
@@ -15,58 +16,21 @@ const stats = [
   { label: "Cases Analyzed", value: "50,000+", icon: Shield }
 ];
 
-// const doctors = [
-//   {
-//     name: "Dr. Summaya jamal",
-//     specialty: "Dermatologist",
-//     hospital: "SSJ Skin Clinic",
-//     image: "https://scontent.fkhi6-2.fna.fbcdn.net/v/t1.6435-9/134811562_3570257169719799_4377441080410688701_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=wHuzyhY8hf8Q7kNvgGFO7un&_nc_oc=AdjgZhGSOqnMHYWJjG7SiUcu_cKLTdSXYDMCt1MEr2dMQlgjBwpwQMhIrWnu0lN2aWA&_nc_zt=23&_nc_ht=scontent.fkhi6-2.fna&_nc_gid=A-35dR6hKJ2Tz-G4QPKw-zb&oh=00_AYC9k92xrP1VoyObK_M9St4uvB-hLHt8t5GqoePUw9aENw&oe=67D69DF3",
-//     expertise: "8 years of experience"
-//   },
-//   {
-//     name: "Dr. Irfan Ahmed kakezai",
-//     specialty: "Dermatologist",
-//     hospital: "Park Lane Hospital Clifton",
-//     image: "https://scontent.fkhi6-1.fna.fbcdn.net/v/t39.30808-6/270137890_3129165433972205_865493524920446707_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=cmKSaiDufwcQ7kNvgErScBJ&_nc_oc=Adi5tQmt8wtB3cMcqDkq-z_IBs5gkTGPnmwE54ytXzohsh1g2TMrlw6Ug5t1KmF15XM&_nc_zt=23&_nc_ht=scontent.fkhi6-1.fna&_nc_gid=Ag6muv7a3k8ir9LUh1JzN0W&oh=00_AYA94yVcxyHxUGbu5yL1EaWEixuF7TuBCSTYf8TwJNwVZg&oe=67B50D90",
-//     expertise: "25 Years+ Experience"
-//   },
-//   {
-//     name: "Dr. Zafar Ahmed",
-//     specialty: "Dermatologist",
-//     hospital: "Deep Ocean Dermatology",
-//     image: "https://staticconnect.marham.pk/assets/doctors/9226/dr-zafar-ahmed-dermatologist-karachi-34_450X450.webp",
-//     expertise: "27 Years of Experience"
-//   }
-//   ,
-//   {
-//     name: "Dr. Daulat Pinjani",
-//     specialty: "Dermatologist",
-//     hospital: "Taj Medical Complex Hospital",
-//     image: "https://d1t78adged64l7.cloudfront.net/images/profile-pics/doctors/1606286793_dr-daulatpinjani.webp?t=1606551078",
-//     expertise: "45 Years of Experience"
-//   }
-// ];
 
-// const hospitals = [
-//   {
-//     name: "Central Medical Center",
-//     location: "123 Healthcare Ave",
-//     image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&q=80&w=500&h=300",
-//     features: ["State-of-the-art Imaging", "24/7 Emergency Care", "Research Center"]
-//   },
-//   {
-//     name: "Metropolitan Hospital",
-//     location: "456 Medical Park",
-//     image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=500&h=300",
-//     features: ["Advanced Cancer Treatment", "Specialized Dermatology Unit", "Clinical Trials"]
-//   }
-// ];
 
 export default function Home() {
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("user") !== null;
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (!isLoggedIn) {
+      e.preventDefault(); // Prevent navigation
+      navigate("/login"); // Redirect to login page
+    }
+  };
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 ">
       {/* Hero Section */}
-
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-6 md:px-12 lg:px-20">
         {/* Left Side (Image) */}
         <div className="flex justify-center">
@@ -83,8 +47,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-            <Link to="/upload-image" className="bg-[#3A7D44] text-white px-6 py-3 rounded-lg w-full sm:w-auto hover:bg-[#2C3930]/80 transition-colors duration-300">
-              Analyze
+            <Link
+              to="/upload-image"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
+              onClick={handleClick}
+            >
+              Analyze Image
             </Link>
             <Link to="/cancer-types" className="border-2 border-[#3F4F44] text-[#3F4F44] font-bold px-6 py-3 rounded-lg w-full sm:w-auto hover:bg-blue-50 transition-colors duration-300">
               Contact Us
@@ -92,26 +60,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-
-      {/* Custom Hero Section */}
-      {/* <div className="text-center mb-16 transform transition-all duration-500 hover:scale-105">
-        <h1 className="text-5xl font-bold text-gray-900 mb-6 animate-fade-in">
-          AI-Powered Skin Cancer Detection
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Early detection saves lives. Our advanced AI system helps identify potential skin cancer symptoms with high accuracy.
-
-        </p>
-        <div className="inline-flex space-x-4">
-          <a href="#learn-more" className="bg-[#3A7D44] text-white px-6 py-3 rounded-lg hover:bg-[#2C3930]/80 transition-colors duration-300">
-            Learn More
-          </a>
-          <a href="#contact" className="border-2 border-[#3F4F44] text-[#3F4F44] text-bold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors duration-300">
-            Contact Us
-          </a>
-        </div>
-      </div> */}
 
       {/* Stats Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 mt-5">
@@ -181,8 +129,6 @@ export default function Home() {
 
         </div>
       </div>
-
-
 
       {/* types of Skin Cancer Ends */}
       {/* Features */}
@@ -274,14 +220,8 @@ export default function Home() {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2 text-black">{hospitals.name}</h3>
                   <p className="text-gray-600 mb-4">{hospitals.rating}</p>
-                  {/* <ul className="space-y-2">
-                    {hospitals.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <Shield className="w-4 h-4 text-blue-600 mr-2" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul> */}
+                  <Link className='text-[#3A7D44] underline hover:text-[#9DC08B]' to={`/hospital-details/${hospitals.id}`}>Read More</Link>
+                  
                 </div>
               </div>
             </div>
