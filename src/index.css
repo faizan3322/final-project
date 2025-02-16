@@ -44,3 +44,22 @@ html {
 .slick-next:before {
   color: #3A7D44; /* Change to any color you want */
 }
+/* Desktop Navigation Links */
+.nav-link {
+  @apply text-white font-medium transition duration-300 hover:text-gray-300;
+}
+
+/* Desktop Navigation Buttons */
+.nav-button {
+  @apply bg-white text-[#384b3d] px-4 py-2 rounded-md font-medium hover:bg-[#3F4F44] hover:text-white hover:border-2 hover:border-white transition duration-300;
+}
+
+/* Mobile Menu Links */
+.mobile-link {
+  @apply text-white text-lg font-medium transition duration-300 hover:text-gray-300;
+}
+
+/* Mobile Menu Buttons */
+.mobile-button {
+  @apply bg-white text-[#384b3d] px-5 py-3 rounded-md font-semibold hover:bg-[#3F4F44] hover:text-white transition duration-300;
+}

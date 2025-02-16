@@ -14,7 +14,7 @@ import Verify from './pages/Verify';
 
 function App() {
   return (
-    
+    <AuthProvider>
       <BrowserRouter>
         <div className="min-h-screen bg-[#F8F5E9]">
           <Navbar />
@@ -31,7 +31,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    
+    </AuthProvider>
   );
 }
 

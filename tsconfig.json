@@ -2,9 +2,11 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "types": ["react", "react-dom"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "ESNext",
     "target": "ESNext",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }
