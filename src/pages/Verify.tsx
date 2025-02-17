@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
 interface LocationState {
   email?: string;
 }
@@ -41,18 +40,40 @@ const Verify: React.FC = () => {
   };
 
   return (
-    <div className="verify-container">
-      <div className="card">
-        <h2>Email Verification</h2>
-        {message && <p className="message">{message}</p>}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h2 className="text-2xl font-bold text-center text-[#3A7D44] mb-4">
+          Email Verification
+        </h2>
+        
+        {message && (
+          <p className="text-center text-red-500 bg-red-100 p-2 rounded mb-4">
+            {message}
+          </p>
+        )}
+
         <input
           type="text"
           placeholder="Enter Verification Code"
           value={code}
           onChange={(e) => setCode(e.target.value)}
           required
+          className="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#3A7D44] focus:outline-none mb-4"
         />
-        <button className="btn" onClick={handleVerify}>Verify</button>
+
+        <button
+          onClick={handleVerify}
+          className="w-full bg-[#3A7D44] text-white py-3 rounded-md font-semibold hover:bg-green-700 transition"
+        >
+          Verify
+        </button>
+
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Didn't receive the code?{" "}
+          <a href="#" className="text-[#3A7D44] hover:underline">
+            Resend Code
+          </a>
+        </p>
       </div>
     </div>
   );

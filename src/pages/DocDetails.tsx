@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import doctors from "./doctors"; // Adjust path as needed
 import { Star, Clock, Languages, Award, Building2, Phone } from 'lucide-react';
-import hospitals from "./hospitals"
+
 
 
 const DoctorDetails = () => {

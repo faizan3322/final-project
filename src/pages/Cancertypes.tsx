@@ -97,7 +97,7 @@ interface CancerType {
         "Special attention to high-risk areas",
         "Partner assistance for hard-to-see areas"
       ],
-      image: "https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&auto=format&fit=crop",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTook0310BLnP5gJ1PiSrslejWkMVjESXtiAQ&s",
       stagingInfo: [
         {
           stage: "Stage 0 (In Situ)",
@@ -197,7 +197,7 @@ interface CancerType {
         "Partner assistance for hard-to-see areas",
         "Use of skin mapping technology"
       ],
-      image: "https://images.unsplash.com/photo-1624727828489-a1e03b79bba8?w=800&auto=format&fit=crop",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtvH5GxZvIXNvVvxsgBngkSffOIXgFWJyqmA&s",
       stagingInfo: [
         {
           stage: "Low Risk",
@@ -451,8 +451,10 @@ export default function Cancertypes() {
           <p className="text-lg text-gray-600">
             Detailed information about different types of skin cancer, including symptoms, risk factors, prevention, and treatment options
           </p>
+          
         </div>
-
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Skin Cancer</h2>
+          <p>The abnormal growth of skin cells most often develops on skin exposed to the sun. But this common form of cancer can also occur on areas of your skin not ordinarily exposed to sunlight. Non melanoma skin cancers tend to develop most often on skin that's exposed to the sun. There is a high cure rate for these cancers. Most people only have minor surgery and don't need further treatment. There are mainly three types of skin cancer.</p>
         <div className="space-y-6">
           {skinCancerTypes.map((cancer) => (
             <div

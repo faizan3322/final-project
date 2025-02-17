@@ -55,7 +55,7 @@ export default function Home() {
               Analyze Image
             </Link>
             <Link to="/cancer-types" className="border-2 border-[#3F4F44] text-[#3F4F44] font-bold px-6 py-3 rounded-lg w-full sm:w-auto hover:bg-blue-50 transition-colors duration-300">
-              Contact Us
+              Learn About Skin Cancer
             </Link>
           </div>
         </div>
@@ -112,12 +112,13 @@ export default function Home() {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/upload-image"
-                className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
-              >
-                Analyze Image
-              </Link>
+            <Link
+              to="/upload-image"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
+              onClick={handleClick}
+            >
+              Analyze Image
+            </Link>
               <Link
                 to="/cancer-types"
                 className="border-2 border-gray-700 text-gray-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
@@ -140,13 +141,13 @@ export default function Home() {
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 hover:-translate-y-2">
           <Users className="w-12 h-12 text-[#3A7D44] mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2 text-[#3A7D44] ">Expert Doctors</h3>
-          <p className=" text-gray-700">Team of board-certified dermatologists and oncologists</p>
+          <h3 className="text-xl font-semibold mb-2 text-[#3A7D44] ">Expert Dematologists</h3>
+          <p className=" text-gray-700">Book appointments with expert Dermatologists</p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 hover:-translate-y-2">
           <Building2 className="w-12 h-12 text-[#3A7D44] mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-2 text-[#3A7D44]">Leading Hospitals</h3>
-          <p className="text-gray-700">Partnership with top medical facilities worldwide</p>
+          <p className="text-gray-700">Suggest top medical facilities all over Karachi</p>
         </div>
       </div>
 
@@ -193,7 +194,7 @@ export default function Home() {
 
       {/* Hospitals Section */}
       <section id="hospitals">
-        <h2 className="text-3xl font-bold text-[#3A7D44] mb-8 text-center">Partner Hospitals</h2>
+        <h2 className="text-3xl font-bold text-[#3A7D44] mb-8 text-center">Suggested Hospitals</h2>
 
         <Slider
           dots={true}
@@ -232,16 +233,16 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="mt-16 bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Contact Us</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">About Us</h2>
         <div className="max-w-2xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Get in Touch</h3>
               <p className="text-gray-600">Have questions about our AI detection system? Our team is here to help.</p>
               <div className="space-y-2">
-                <p className="text-gray-600">📞 (555) 123-4567</p>
-                <p className="text-gray-600">📧 contact@skincheckAI.com</p>
-                <p className="text-gray-600">📍 789 Medical Drive, Suite 100</p>
+                <p className="text-gray-600">📞 +92 3494549812</p>
+                <p className="text-gray-600">📧 melanocheck@gmail.com.com</p>
+                <p className="text-gray-600">📍 Gulshan e Iqbal block 6, Sir Syed University Of Engineering and technology</p>
               </div>
             </div>
             <div className="space-y-4">

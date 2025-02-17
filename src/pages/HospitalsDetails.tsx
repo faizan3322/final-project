@@ -1,86 +1,119 @@
 import React from 'react'
 import hospitals from "./hospitals"
-import { useParams } from "react-router-dom";
-import { Star, Clock, Languages, Award, Building2, Phone } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Phone, MapPin, Award, Building, Calendar, ExternalLink } from 'lucide-react';
+
 
 export default function HospitalsDetails() {
-    const { id } = useParams(); // Get hospital ID from URL
-    const hospital = hospitals.find((hos) => hos.id === id); // Find the hospital by ID
+
+    const { id } = useParams();
+    const hospital = hospitals.find(h => h.id === id);
 
     if (!hospital) {
-        return <div className="text-center text-red-500 text-xl mt-10">hospital not found</div>;
-    }
-  return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <div className="max-w-4xl mx-auto">
-          <button
-            
-            className="mb-6 text-blue-600 hover:text-blue-800 flex items-center gap-2"
-          >
-            ← Back to hospitals
-          </button>
-          
-          <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <img
-                  src={hospital.image}
-                  alt={hospital.name}
-                  className="w-full h-64 md:h-full object-cover"
-                />
-              </div>
-              
-              <div className="p-6 md:w-2/3">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h1 className="text-2xl font-bold text-gray-900">{hospital.name}</h1>
-                    <p className="text-lg text-gray-600">{hospital.specialty}</p>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Star 
-                      className="w-5 h-5 text-yellow-400" 
-                      style={{ fill: '#FBBF24' }}
-                    />
-                    <span className="font-semibold">{hospital.rating}</span>
-                    <span className="text-gray-500">({hospital.reviews} reviews)</span>
-                  </div>
+        return (
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                <div className="text-center">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Hospital not found</h2>
+                    <Link to="/" className="text-[#3A7D44] hover:text-[#9DC08B] flex items-center justify-center gap-2">
+                        <ArrowLeft size={20} />
+                        Back to Home
+                    </Link>
                 </div>
-  
-                <div className="mt-6 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-5 h-5 text-[#3A7D44]" />
-                    <span>{hospital.hospital}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-[#3A7D44]" />
-                    <span>Mon - Sun</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-[#3A7D44]" />
-                    <span>{hospital.expertise} </span>
-                  </div>
-                </div>
-  
-                <div className="mt-6">
-                  <h2 className="text-xl font-semibold mb-2">About</h2>
-                  <p className="text-gray-600">{hospital.about}</p>
-                </div>
-  
-                
-  
-                <div className="mt-8">
-                    <a href ={` ${hospital.link} `} target="_blank">
-                  <button className="w-full bg-[#3A7D44] text-white py-3 px-6 rounded-lg hover:bg-[#9DC08B] flex items-center justify-center gap-2">
-                    <Phone className="w-5 h-5" />
-                    Book Appointment
-                  </button>
-                  </a>
-                </div>
-              </div>
             </div>
-          </div>
+        );
+    }
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hospital.map)}`;
+
+
+    return (
+        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+                <Link to="/" className="text-[#3A7D44] hover:text-[#9DC08B] flex items-center gap-2 mb-8">
+                    <ArrowLeft size={20} />
+                    Back to Hospitals
+                </Link>
+
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img
+                        src={hospital.image}
+                        alt={hospital.name}
+                        className="w-full h-64 object-cover"
+                    />
+
+                    <div className="p-8">
+                        <div className="flex justify-between items-start mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">{hospital.name}</h1>
+                            <span className="bg-[#3A7D44] text-white px-4 py-2 rounded-full text-sm">
+                                {hospital.rating}
+                            </span>
+                        </div>
+
+                        <p className="text-gray-600 mb-8">{hospital.about}</p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div className="flex items-start gap-3">
+                                <MapPin className="text-[#3A7D44] mt-1" />
+                                <div>
+                                    <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
+                                    <p className="text-gray-600 mb-2">{hospital.address}</p>
+                                    <a
+                                        href={googleMapsUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-[#3A7D44] hover:text-[#9DC08B] gap-1 text-sm"
+                                    >
+                                        View on Maps <ExternalLink size={14} />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <Phone className="text-[#3A7D44] mt-1" />
+                                <div>
+                                    <h3 className="font-semibold text-gray-900 mb-1">Contact</h3>
+                                    <p className="text-gray-600">{hospital.contact}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Award className="text-[#3A7D44]" />
+                                    <h3 className="text-xl font-semibold text-gray-900">Specialties</h3>
+                                </div>
+                                <ul className="space-y-2">
+                                    {hospital.specialities.map((specialty, index) => (
+                                        <li key={index} className="text-gray-600">• {specialty}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div>
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Building className="text-[#3A7D44]" />
+                                    <h3 className="text-xl font-semibold text-gray-900">Facilities</h3>
+                                </div>
+                                <ul className="space-y-2">
+                                    {hospital.features.map((features, index) => (
+                                        <li key={index} className="text-gray-600">• {features}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="border-t pt-8">
+                            <button
+                                className="w-full bg-[#3A7D44] hover:bg-[#2C5A34] text-white py-4 px-6 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 font-semibold"
+                                onClick={() => window.open(`${hospital.link}, _blank`)}
+                            >
+                                <Calendar size={20} />
+                                Book an Appointment Online
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  )
+    );
 }

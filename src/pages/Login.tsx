@@ -3,18 +3,13 @@ import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-interface FlashMessage {
-  type: "success" | "error";
-  message: string;
-}
-
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [flashMessage, setFlashMessage] = useState<FlashMessage | null>(null);
-  const navigate = useNavigate(); // For redirecting after login
+  const [flashMessage, setFlashMessage] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,34 +21,30 @@ const Login: React.FC = () => {
         password,
       });
 
-      const userData = response.data.user; // Assuming response contains user info
-
-      // Store user data in localStorage
+      const userData = response.data.user;
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // Show success message
       setFlashMessage({ type: "success", message: response.data.message });
 
-      // Redirect to home page after successful login
       setTimeout(() => {
+        setLoading(false);
         navigate("/upload-image");
-        window.location.reload(); // Reload to update Navbar state
-      }, 1000);
+        window.location.reload(); // Refresh to update Navbar
+      }, 1500);
     } catch (error: any) {
       setFlashMessage({
         type: "error",
         message: error.response?.data?.message || "An error occurred.",
       });
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container relative">
       {loading && (
-        <div className="loader-overlay">
-          <div className="loader"></div>
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="loader border-4 border-green-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
         </div>
       )}
       <div className="flex min-h-screen flex-col justify-center items-center bg-gray-100 px-6 py-12">
@@ -62,7 +53,6 @@ const Login: React.FC = () => {
             Log In to Your Account
           </h2>
 
-          {/* Flash Message */}
           {flashMessage && (
             <div
               className={`flex items-center justify-between p-3 text-white text-sm rounded-md mb-4 ${
@@ -79,11 +69,8 @@ const Login: React.FC = () => {
             </div>
           )}
 
-          {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Input */}
             <div className="relative">
-              <i className="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
               <input
                 type="email"
                 placeholder="Email Address"
@@ -94,9 +81,7 @@ const Login: React.FC = () => {
               />
             </div>
 
-            {/* Password Input with Toggle */}
             <div className="relative">
-              <i className="fas fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-[#3A7D44]"></i>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -114,7 +99,6 @@ const Login: React.FC = () => {
               </button>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-[#3A7D44] text-white py-3 rounded-md font-semibold hover:bg-green-700 transition"
@@ -123,7 +107,6 @@ const Login: React.FC = () => {
             </button>
           </form>
 
-          {/* Forgot Password & Register */}
           <div className="text-center mt-4">
             <a href="#" className="text-sm text-[#3A7D44] hover:underline">
               Forgot Password?
