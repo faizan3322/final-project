@@ -9,15 +9,11 @@ interface CancerType {
     symptoms: string[];
     riskFactors: string[];
     prevention: string[];
-    diagnosis: string[];
-    treatment: string[];
     statistics: string[];
     earlyDetection: string[];
     image: string;
-    stagingInfo: {
-      stage: string;
-      description: string;
-    }[];
+    
+    
   }
 
   const skinCancerTypes: CancerType[] = [
@@ -59,26 +55,7 @@ interface CancerType {
         "Use UV-protective clothing and gear",
         "Teach children sun-safe behaviors early"
       ],
-      diagnosis: [
-        "Visual examination using the ABCDE rule",
-        "Dermoscopy (examination with special magnifying tool)",
-        "Skin biopsy (punch, excisional, or incisional)",
-        "Lymph node biopsy if spread is suspected",
-        "Imaging tests (CT, MRI, PET scan) for staging",
-        "Genetic testing for certain mutations",
-        "Blood tests for monitoring treatment response"
-      ],
-      treatment: [
-        "Surgery (wide local excision)",
-        "Sentinel lymph node biopsy",
-        "Immunotherapy (checkpoint inhibitors)",
-        "Targeted therapy for specific gene mutations",
-        "Radiation therapy",
-        "Chemotherapy",
-        "Clinical trials",
-        "Lymph node dissection if needed",
-        "Palliative care for advanced cases"
-      ],
+      
       statistics: [
         "5-year survival rate for localized melanoma: 99%",
         "5-year survival rate for regional spread: 68%",
@@ -98,28 +75,7 @@ interface CancerType {
         "Partner assistance for hard-to-see areas"
       ],
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTook0310BLnP5gJ1PiSrslejWkMVjESXtiAQ&s",
-      stagingInfo: [
-        {
-          stage: "Stage 0 (In Situ)",
-          description: "Cancer cells are only in the outer layer of skin (epidermis)"
-        },
-        {
-          stage: "Stage I",
-          description: "Tumor is ≤2mm thick, no ulceration or lymph node involvement"
-        },
-        {
-          stage: "Stage II",
-          description: "Tumor is >2mm thick, may have ulceration, no lymph node involvement"
-        },
-        {
-          stage: "Stage III",
-          description: "Any thickness with lymph node involvement or in-transit metastases"
-        },
-        {
-          stage: "Stage IV",
-          description: "Cancer has spread to distant organs or lymph nodes"
-        }
-      ]
+      
     },
     {
       name: "Basal Cell Carcinoma",
@@ -159,26 +115,7 @@ interface CancerType {
         "Protective measures in high-altitude areas",
         "Education about sun safety"
       ],
-      diagnosis: [
-        "Physical examination",
-        "Skin biopsy (shave, punch, or excisional)",
-        "Dermoscopy examination",
-        "Imaging tests for rare cases of deep tissue involvement",
-        "Careful examination of lymph nodes",
-        "Photography for monitoring",
-        "Mapping of multiple lesions"
-      ],
-      treatment: [
-        "Surgical excision",
-        "Mohs micrographic surgery",
-        "Curettage and electrodesiccation",
-        "Radiation therapy",
-        "Photodynamic therapy",
-        "Topical medications (5-FU, imiquimod)",
-        "Cryosurgery",
-        "Laser surgery",
-        "Oral medications for advanced cases"
-      ],
+     
       statistics: [
         "Most common form of skin cancer",
         "Over 4 million cases diagnosed annually in the US",
@@ -198,24 +135,7 @@ interface CancerType {
         "Use of skin mapping technology"
       ],
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtvH5GxZvIXNvVvxsgBngkSffOIXgFWJyqmA&s",
-      stagingInfo: [
-        {
-          stage: "Low Risk",
-          description: "Small, well-defined primary tumor in low-risk area"
-        },
-        {
-          stage: "High Risk",
-          description: "Larger tumors, high-risk locations, or aggressive growth patterns"
-        },
-        {
-          stage: "Locally Advanced",
-          description: "Significant local invasion or nerve involvement"
-        },
-        {
-          stage: "Metastatic",
-          description: "Rare cases where cancer has spread to other parts of body"
-        }
-      ]
+      
     },
     {
       name: "Squamous Cell Carcinoma",
@@ -255,26 +175,7 @@ interface CancerType {
         "Smoking cessation",
         "Regular medical check-ups"
       ],
-      diagnosis: [
-        "Physical examination",
-        "Skin biopsy",
-        "Imaging tests for advanced cases",
-        "Lymph node examination",
-        "Dermoscopy",
-        "CT or PET scans if metastasis suspected",
-        "Blood tests for monitoring"
-      ],
-      treatment: [
-        "Surgical excision",
-        "Mohs surgery for high-risk areas",
-        "Radiation therapy",
-        "Curettage and electrodesiccation",
-        "Cryosurgery",
-        "Photodynamic therapy",
-        "Topical medications",
-        "Systemic chemotherapy for advanced cases",
-        "Immunotherapy"
-      ],
+     
       statistics: [
         "Second most common skin cancer",
         "Over 1 million cases diagnosed annually in the US",
@@ -294,28 +195,7 @@ interface CancerType {
         "Partner assistance for thorough checks"
       ],
       image: "https://images.ctfassets.net/1ny4yoiyrqia/0RNTNvh0OsE6vFxhoKXm/665168d4e1b144e50d3a6ca521b94f21/squamous-cell-carcinoma-symtoms-rough-reddish-patch.png?w=450&h=300",
-      stagingInfo: [
-        {
-          stage: "Stage 0",
-          description: "Cancer is only in the epidermis (in situ)"
-        },
-        {
-          stage: "Stage I",
-          description: "Small tumor with no high-risk features"
-        },
-        {
-          stage: "Stage II",
-          description: "Larger tumor with high-risk features"
-        },
-        {
-          stage: "Stage III",
-          description: "Cancer has spread to lymph nodes"
-        },
-        {
-          stage: "Stage IV",
-          description: "Cancer has spread to distant organs"
-        }
-      ]
+      
     }
   ];
 
@@ -400,43 +280,7 @@ export default function Cancertypes() {
                 </div>
               </div>
             );
-          case "treatment":
-            return (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Diagnosis Methods</h3>
-                  <ul className="list-disc pl-5 text-gray-700">
-                    {cancer.diagnosis.map((method, index) => (
-                      <li key={index} className="mb-1">{method}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Treatment Options</h3>
-                  <ul className="list-disc pl-5 text-gray-700">
-                    {cancer.treatment.map((option, index) => (
-                      <li key={index} className="mb-1">{option}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            );
-          case "staging":
-            return (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancer Staging Information</h3>
-                  <div className="grid gap-4">
-                    {cancer.stagingInfo.map((stage, index) => (
-                      <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-gray-900">{stage.stage}</h4>
-                        <p className="text-gray-700">{stage.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
+          
           default:
             return null;
         }
@@ -514,7 +358,7 @@ export default function Cancertypes() {
                       <Shield className="w-4 h-4" />
                       Risk & Prevention
                     </button>
-                    <button
+                    {/* <button
                       onClick={() => setActiveTab("treatment")}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full ${
                         activeTab === "treatment"
@@ -535,7 +379,7 @@ export default function Cancertypes() {
                     >
                       <Clock className="w-4 h-4" />
                       Staging
-                    </button>
+                    </button> */}
                   </div>
                   <div className="p-6">
                     {renderTabContent(cancer)}

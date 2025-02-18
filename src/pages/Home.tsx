@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Building2, Brain, Shield, Clock, BarChart as ChartBar } from 'lucide-react';
+import { Users, Building2, Brain, Shield, Clock, Mail, MapPin, Phone, BarChart as ChartBar } from 'lucide-react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -112,13 +112,13 @@ export default function Home() {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/upload-image"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
-              onClick={handleClick}
-            >
-              Analyze Image
-            </Link>
+              <Link
+                to="/upload-image"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
+                onClick={handleClick}
+              >
+                Analyze Image
+              </Link>
               <Link
                 to="/cancer-types"
                 className="border-2 border-gray-700 text-gray-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
@@ -222,7 +222,7 @@ export default function Home() {
                   <h3 className="text-xl font-semibold mb-2 text-black">{hospitals.name}</h3>
                   <p className="text-gray-600 mb-4">{hospitals.rating}</p>
                   <Link className='text-[#3A7D44] underline hover:text-[#9DC08B]' to={`/hospital-details/${hospitals.id}`}>Read More</Link>
-                  
+
                 </div>
               </div>
             </div>
@@ -233,16 +233,21 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="mt-16 bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">About Us</h2>
+        <h2 className="text-3xl font-bold text-green-700 mb-8 text-center">About Us</h2>
         <div className="max-w-2xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Get in Touch</h3>
-              <p className="text-gray-600">Have questions about our AI detection system? Our team is here to help.</p>
+              <p className="text-gray-600">Have questions about our AI detection system? </p>
               <div className="space-y-2">
-                <p className="text-gray-600">📞 +92 3494549812</p>
-                <p className="text-gray-600">📧 melanocheck@gmail.com.com</p>
-                <p className="text-gray-600">📍 Gulshan e Iqbal block 6, Sir Syed University Of Engineering and technology</p>
+                <a href='tel:+923494549812'><p className="text-gray-600 flex items-center"><Phone className="text-gray-600 mr-2 " /> +92 3494549812</p></a>
+                <a className="text-gray-600 flex items-center" href='mailto:melanocheck@gmail.com'><p className="text-gray-600 flex items-center"><Mail className="text-gray-600 mr-2" /> melanocheck@gmail.com</p></a>
+                <p className="text-gray-600 flex items-center">
+                  <MapPin className="text-gray-600 mr-2" />
+                  Gulshan e Iqbal block 6
+                </p>
+
+
               </div>
             </div>
             <div className="space-y-4">

@@ -8,6 +8,7 @@ interface LocationState {
 const Verify: React.FC = () => {
   const [code, setCode] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false); // Add loading state
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ const Verify: React.FC = () => {
       setMessage("No email found for verification.");
       return;
     }
+
+    setLoading(true); // Start loading
 
     try {
       const response = await fetch("http://localhost:5000/verify", {
@@ -36,11 +39,19 @@ const Verify: React.FC = () => {
       }
     } catch (error) {
       setMessage("Verification failed.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 relative">
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="w-12 h-12 border-4 border-t-transparent border-green-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
         <h2 className="text-2xl font-bold text-center text-[#3A7D44] mb-4">
           Email Verification

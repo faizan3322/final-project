@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import doctors from "./doctors"; // Adjust path as needed
 import { Star, Clock, Languages, Award, Building2, Phone } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 
 
@@ -13,29 +14,14 @@ const DoctorDetails = () => {
     }
 
     return (
-        // <div className=" border-2 flex" >
-        //     <div className="rounded-xs border-2 ml-10">
-        //         <img
-        //             src={doctor.image}
-        //             alt={doctor.name}
-        //             className="rounded-xs h-64 object-cover rounded-lg m-4 mt-10"
-        //         />
-        //         <h2 className="text-3xl font-bold mb-2">{doctor.name}</h2>
-        //     </div>
-        //     <div className="border-2 flex items-center justify-center flex-col ">
-                
-        //         <p className="text-blue-600 text-lg mb-2">{doctor.specialty}</p>
-        //         <p className="text-gray-600 text-lg mb-2">{doctor.hospital}</p>
-        //         <p className="text-gray-500 text-sm">{doctor.expertise}</p>
-        //     </div>
-        // </div>
-        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+       
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center flex-col">
         <div className="max-w-4xl mx-auto">
           <button
             
-            className="mb-6 text-blue-600 hover:text-blue-800 flex items-center gap-2"
-          >
-            ← Back to Doctors
+            className="mb-6 text-green-700 hover:text-green-800 flex items-center gap-2"
+          > <Link to="/"> ← Back to Doctors</Link>
+            
           </button>
           
           <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -98,6 +84,11 @@ const DoctorDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+          <p className="text-sm text-gray-600 text-center">
+            Disclaimer: The above information is based on <strong>Marham.pk</strong>
+          </p>
         </div>
       </div>
     );

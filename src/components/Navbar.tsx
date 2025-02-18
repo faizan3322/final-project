@@ -50,7 +50,7 @@ export default function Navbar() {
               alt="Logo"
             />
             <span className="font-bold text-2xl text-white tracking-wide group-hover:text-gray-200 transition-colors">
-              Melano Check
+              Skin Cancer Detection System
             </span>
           </Link>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                  className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105"
                 >
                   <LogIn size={20} />
                   <span>Login</span>
@@ -166,7 +166,7 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300"
+                  className="flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:from-green-600 hover:to-green-700 transition-all duration-300"
                   onClick={() => setIsOpen(false)}
                 >
                   <LogIn size={20} />

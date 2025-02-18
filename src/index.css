@@ -63,3 +63,35 @@ html {
 .mobile-button {
   @apply bg-white text-[#384b3d] px-5 py-3 rounded-md font-semibold hover:bg-[#3F4F44] hover:text-white transition duration-300;
 }
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a7c59; /* Scrollbar color */
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d6d4d; /* Scrollbar color on hover */
+  border-radius: 10px;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #4a7c59 #f1f1f1;
+  
+}
+select option:hover {
+  background-color: #3A7D44 !important;
+  
+}
+

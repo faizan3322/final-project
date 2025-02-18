@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -107,17 +107,13 @@ const Login: React.FC = () => {
             </button>
           </form>
 
-          <div className="text-center mt-4">
-            <a href="#" className="text-sm text-[#3A7D44] hover:underline">
-              Forgot Password?
-            </a>
-          </div>
+         
           <div className="text-center mt-2">
             <p className="text-sm text-gray-600">
               Don't have an account?{" "}
-              <a href="/register" className="text-[#3A7D44] hover:underline">
+              <Link to="/signup" className="text-[#3A7D44] hover:underline">
                 Register here
-              </a>
+              </Link>
             </p>
           </div>
         </div>

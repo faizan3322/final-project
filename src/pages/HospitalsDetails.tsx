@@ -103,17 +103,20 @@ export default function HospitalsDetails() {
                         </div>
 
                         <div className="border-t pt-8">
-                            <button
-                                className="w-full bg-[#3A7D44] hover:bg-[#2C5A34] text-white py-4 px-6 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 font-semibold"
-                                onClick={() => window.open(`${hospital.link}, _blank`)}
-                            >
-                                <Calendar size={20} />
-                                Book an Appointment Online
-                            </button>
-                        </div>
+
+                            
+                            <a href={`${hospital.link}`} target='_blank'>
+                                <button
+                                    className="w-full bg-[#3A7D44] hover:bg-[#2C5A34] text-white py-4 px-6 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 font-semibold"
+                                // onClick={() => window.open(`${hospital.link}, _blank`)}
+                                >
+                                    <Calendar size={20} />
+                                    Book an Appointment Online</button></a>
+                        
                     </div>
                 </div>
             </div>
         </div>
+        </div >
     );
 }
